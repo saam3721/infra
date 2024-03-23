@@ -1,0 +1,5 @@
+servers:
+  hosts:
+    myserver:
+      ansible_host: "{{ lookup('env', 'ANSIBLE_SERVER_IP') }}"
+      ansible_user: "{{ lookup('env', 'ANSIBLE_SERVER_USER') }}"
