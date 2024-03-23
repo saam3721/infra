@@ -1,0 +1,38 @@
+---
+- name: Set firewall rules
+  hosts: servers
+  tasks:
+    - name: Install UFW
+      become: yes
+      apt:
+        name: ufw
+        state: present
+        update_cache: yes
+
+    - name: Reset current rules
+      become: yes
+      ufw:
+        state: reset
+
+    - name: Enable UFW
+      become: yes
+      ufw:
+        state: enabled
+
+    - name: Allow SSH
+      become: yes
+      ufw:
+        rule: allow
+        port: ssh
+
+    - name: Allow HTTP
+      become: yes
+      ufw:
+        rule: allow
+        port: http
+
+    - name: Deny all other incoming traffic
+      become: yes
+      ufw:
+        direction: in
+        rule: deny
