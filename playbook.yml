@@ -31,6 +31,12 @@
         rule: allow
         port: http
 
+    - name: Allow HTTPS
+      become: yes
+      ufw:
+        rule: allow
+        port: https
+
     - name: Deny all other incoming traffic
       become: yes
       ufw:
